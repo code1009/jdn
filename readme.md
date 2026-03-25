@@ -1,4 +1,4 @@
-# Julian Day Number
+﻿# Julian Day Number
 
 ## 개요
 
@@ -31,64 +31,43 @@ rtc나 log관련 시간처리 할 때 용이합니다.
 
 ## 주요 함수 목록 및 설명
 
-
 ### 달력 변환 함수
  
-- `void calendar_date_to_jdn(const int32_t year, const int32_t month, const int32_t day, int32_t* const jdn);`
-  - 년월일 → JDN
-
-- `void jdn_to_calendar_date(const int32_t jdn, int32_t* const year, int32_t* const month, int32_t* const day);`
-  - JDN → 년월일
-
-- `void gregorian_calendar_date_to_jdn(const int32_t year, const int32_t month, const int32_t day, int32_t* const jdn);`
-  - 그레고리력 → JDN
-- `void julian_calendar_date_to_jdn(const int32_t year, const int32_t month, const int32_t day, int32_t* const jdn);`
-  - 율리우스력 → JDN
-
-- `void jdn_to_gregorian_calendar_date(const int32_t jdn, int32_t* const year, int32_t* const month, int32_t* const day);`
-  - JDN → 그레고리력
-- `void jdn_to_julian_calendar_date(const int32_t jdn, int32_t* const year, int32_t* const month, int32_t* const day);`
-  - JDN → 율리우스력
+- `calendar_date_to_jdn()` : 년월일 → JDN
+- `jdn_to_calendar_date()` : JDN → 년월일
+- `gregorian_calendar_date_to_jdn()` : 그레고리력 → JDN
+- `julian_calendar_date_to_jdn()` : 율리우스력 → JDN
+- `jdn_to_gregorian_calendar_date()` : JDN → 그레고리력
+- `jdn_to_julian_calendar_date()` : JDN → 율리우스력
 
 ### JDN 변환 함수
 
-- `void jdn_to_modified_jdn(const int32_t jdn, int32_t* const modified_jdn);`
-  - JDN → Modified JD 변환
-- `void jdn_to_truncated_jd(const int32_t jdn, int32_t* const truncated_jd);`
-  - JDN → Truncated JD 변환
-- `void jdn_to_lilian_date(const int32_t jdn, int32_t* const lilian_date);`
-  - JDN → Lilian Date 변환
-- `void jdn_to_unix_time_day_count(const int32_t jdn, int32_t* const unix_time_day_count);`
-  - JDN → Unix Epoch 일수 변환
+- `jdn_to_modified_jdn()` : JDN → Modified JD 변환
+- `jdn_to_truncated_jd()` : JDN → Truncated JD 변환
+- `jdn_to_lilian_date()` : JDN → Lilian Date 변환
+- `jdn_to_unix_time_day_count()` : JDN → Unix Epoch 일수 변환
 
 
 ### 날짜 유효성/윤년/요일
 
-- `bool gregorian_calendar_is_leap_year(const int32_t year);`
-  - 윤년 판별(그레고리력)
-- `bool gregorian_calendar_is_valid_date(const int32_t year, const int32_t month, const int32_t day);`
-  - 날짜 유효성 검사(그레고리력)
-- `int32_t get_day_of_week_us(const int32_t jdn);`
-  - 미국식 요일(0=일~6=토)
-- `int32_t get_day_of_week_iso(const int32_t jdn);`
-  - ISO 요일(1=월~7=일)
+- `gregorian_calendar_is_leap_year()` : 윤년 판별(그레고리력)
+- `gregorian_calendar_is_valid_date()` : 날짜 유효성 검사(그레고리력)
+- `int32_t get_day_of_week_us()` : 미국식 요일(0=일~6=토)
+- `int32_t get_day_of_week_iso()` : ISO 요일(1=월~7=일)
 
 ### Epoch/Unix Time 변환
 
-- `void epoch_to_jdn(const int32_t base_epoch_jdn, const int32_t day_number, int32_t* const jdn);`
-- `void epoch_to_date(const int32_t base_epoch_jdn, const int32_t day_number, int32_t* const year, int32_t* const month, int32_t* const day);`
-- `void unix_time_to_jdn(const jdn_time_t t, int32_t* const jdn);`
-- `void unix_time_to_datetime(const jdn_time_t t, int32_t* const year, ...);`
-- `void datetime_to_unix_time(const int32_t year, ... , jdn_time_t* const t);`
+- `epoch_to_jdn()`
+- `epoch_to_date()`
+- `unix_time_to_jdn()`
+- `unix_time_to_datetime()`
+- `datetime_to_unix_time()`
 
 ### 기타
 
-- `int32_t calendar_date_from_1582_10_05_to_1582_10_14(const int32_t year, const int32_t month, const int32_t day);`
-  - 1582년 10월 5~14일(달력 개정 결번 구간) 판별
-- `int32_t epoch_second_get_day_number(const jdn_time_t epoch_second);`
-  - Epoch 초 → 경과 일수
-- `int32_t epoch_second_get_daysecond_number(const jdn_time_t epoch_second);`
-  - Epoch 초 → 하루 내 경과 초
+- `calendar_date_from_1582_10_05_to_1582_10_14()` : 1582년 10월 5~14일(달력 개정 결번 구간) 판별
+- `epoch_second_get_day_number()` : Epoch 초 → 경과 일수
+- `epoch_second_get_daysecond_number()` : Epoch 초 → 하루 내 경과 초
 
 ---
 
