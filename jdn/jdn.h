@@ -19,8 +19,11 @@
 
 /////////////////////////////////////////////////////////////////////////////
 //===========================================================================
-#define jdn_time_t int64_t
-//#define jdn_time_t int32_t
+//#define jdn_time_t int64_t
+#define jdn_time_t int32_t
+
+//===========================================================================
+//#include <time.h>
 //#define jdn_timt_t time_t
 //#define jdn_time_t __time64_t
 //#define jdn_time_t __time32_t
@@ -49,8 +52,8 @@ bool calendar_date_to_jdn (int32_t year, int32_t month, int32_t day, int32_t* jd
 void jdn_to_calendar_date (int32_t jdn, int32_t* year, int32_t* month, int32_t* day);
 
 //===========================================================================
-int32_t us_get_day_of_week  (int32_t jdn);
-int32_t iso_get_day_of_week (int32_t jdn);
+int32_t get_day_of_week_us  (int32_t jdn);
+int32_t get_day_of_week_iso (int32_t jdn);
 
 //===========================================================================
 bool gregorian_calendar_is_leap_year          (int32_t year);
