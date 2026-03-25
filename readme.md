@@ -1,4 +1,4 @@
-# jdn.c / jdn.h Julian Day Number 라이브러리 문서
+# Julian Day Number 라이브러리 문서
 
 ## 개요
 
