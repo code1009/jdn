@@ -125,7 +125,7 @@ http://jidolstar.tistory.com/482
 //! @param jdn          jdn.
 //! @param modified_jdn modified jdn.
 //! 
-void jdn_to_modified_jdn (int32_t jdn, int32_t* modified_jdn)
+void jdn_to_modified_jdn (const int32_t jdn, int32_t* const modified_jdn)
 {
 	/*
 	# Modified JD
@@ -143,7 +143,7 @@ void jdn_to_modified_jdn (int32_t jdn, int32_t* modified_jdn)
 //! @param jdn          jdn.
 //! @param truncated_jd truncated jd.
 //! 
-void jdn_to_truncated_jd (int32_t jdn, int32_t* truncated_jd)
+void jdn_to_truncated_jd (const int32_t jdn, int32_t* const truncated_jd)
 {
 	/*
 	# Truncated JD
@@ -168,7 +168,7 @@ void jdn_to_truncated_jd (int32_t jdn, int32_t* truncated_jd)
 //! @param jdn         jdn.
 //! @param lilian_date lilian date.
 //! 
-void jdn_to_lilian_date (int32_t jdn, int32_t* lilian_date)
+void jdn_to_lilian_date (const int32_t jdn, int32_t* const lilian_date)
 {
 	/*
 	# Lilian date 
@@ -188,7 +188,7 @@ void jdn_to_lilian_date (int32_t jdn, int32_t* lilian_date)
 //! @param jdn                 jdn.
 //! @param unix_time_day_count 1970년 1월 1일 부터 현재까지의 일 수.
 //! 
-void jdn_to_unix_time_day_count (int32_t jdn, int32_t* unix_time_day_count)
+void jdn_to_unix_time_day_count (const int32_t jdn, int32_t* const unix_time_day_count)
 {
 	/*
 	# Unix Time
@@ -216,7 +216,7 @@ void jdn_to_unix_time_day_count (int32_t jdn, int32_t* unix_time_day_count)
 //! @param day   일.
 //! @param jdn   jdn.
 //! 
-void gregorian_calendar_date_to_jdn (int32_t year, int32_t month, int32_t day, int32_t* jdn)
+void gregorian_calendar_date_to_jdn (const int32_t year, const int32_t month, const int32_t day, int32_t* const jdn)
 {
 	// The algorithm is valid for all (possibly proleptic) Gregorian calendar dates after November 23, -4713.
 
@@ -253,7 +253,7 @@ void gregorian_calendar_date_to_jdn (int32_t year, int32_t month, int32_t day, i
 //! @param day   일.
 //! @param jdn   jdn.
 //! 
-void julian_calendar_date_to_jdn (int32_t year, int32_t month, int32_t day, int32_t* jdn)
+void julian_calendar_date_to_jdn (const int32_t year, const int32_t month, const int32_t day, int32_t* const jdn)
 {
 	// The algorithm is valid for all (possibly proleptic) Julian calendar years >= -4712, that is, for all JDN >= 0.
 
@@ -274,7 +274,7 @@ void julian_calendar_date_to_jdn (int32_t year, int32_t month, int32_t day, int3
 }
 
 #if 0
-void jdn_to_gregorian_calendar_date (int32_t jdn, int32_t* year, int32_t* month, int32_t* day)
+void jdn_to_gregorian_calendar_date (const int32_t jdn, int32_t* const year, int32_t* const month, int32_t* const day)
 {
 	int32_t J;
 	int32_t Y;
@@ -372,7 +372,7 @@ void jdn_to_gregorian_calendar_date (int32_t jdn, int32_t* year, int32_t* month,
 //! @param month 월.
 //! @param day   일.
 //! 
-void jdn_to_julian_calendar_date (int32_t jdn, int32_t* year, int32_t* month, int32_t* day)
+void jdn_to_julian_calendar_date (const int32_t jdn, int32_t* const year, int32_t* const month, int32_t* const day)
 {
 	const int32_t y = 4716;
 	const int32_t j = 1401;
@@ -436,7 +436,7 @@ void jdn_to_julian_calendar_date (int32_t jdn, int32_t* year, int32_t* month, in
 //! @retval <0 1582년 10월 05일 부터 1582년 10월 14일 이전(음수).
 //! @retval >0 1582년 10월 05일 부터 1582년 10월 14일 이후(양수).
 //! 
-int32_t calendar_date_from_1582_10_05_to_1582_10_14 (int32_t year, int32_t month, int32_t day)
+int32_t calendar_date_from_1582_10_05_to_1582_10_14 (const int32_t year, const int32_t month, const int32_t day)
 {
 	int32_t from_1582_10_05_to_1582_10_14;
 
@@ -492,7 +492,7 @@ int32_t calendar_date_from_1582_10_05_to_1582_10_14 (int32_t year, int32_t month
 //! 
 //! @return 성공 여부.
 //! 
-bool calendar_date_to_jdn (int32_t year, int32_t month, int32_t day, int32_t* jdn)
+bool calendar_date_to_jdn (const int32_t year, const int32_t month, const int32_t day, int32_t* const jdn)
 {
 	int32_t from_1582_10_05_to_1582_10_14;
 
@@ -502,7 +502,7 @@ bool calendar_date_to_jdn (int32_t year, int32_t month, int32_t day, int32_t* jd
 
 	if      (0> from_1582_10_05_to_1582_10_14)
 	{
-		julian_calendar_date_to_jdn    (year,month,day, jdn);
+		julian_calendar_date_to_jdn (year,month,day, jdn);
 	}
 	else if (0==from_1582_10_05_to_1582_10_14)
 	{
@@ -524,7 +524,7 @@ bool calendar_date_to_jdn (int32_t year, int32_t month, int32_t day, int32_t* jd
 //! @param day   일.
 //! @param jdn   jdn.
 //! 
-void jdn_to_calendar_date (int32_t jdn, int32_t* year, int32_t* month, int32_t* day)
+void jdn_to_calendar_date (const int32_t jdn, int32_t* const year, int32_t* const month, int32_t* const day)
 {
 	// jdn: 2299160 = 1582-10-04 Julian Calendar Date
 	// jdn: 2299161 = 1582-10-15 Gregorian Calendar Date
@@ -558,7 +558,7 @@ void jdn_to_calendar_date (int32_t jdn, int32_t* year, int32_t* month, int32_t* 
 //! @retval 5 Fri.  
 //! @retval 6 Sat.  
 //! 
-int32_t get_day_of_week_us (int32_t jdn)
+int32_t get_day_of_week_us (const int32_t jdn)
 {
 	/*
 	W1 = mod(J + 1, 7)
@@ -588,7 +588,7 @@ int32_t get_day_of_week_us (int32_t jdn)
 //! @retval 6 Sat.  
 //! @retval 7 Sun.  
 //! 
-int32_t get_day_of_week_iso (int32_t jdn)
+int32_t get_day_of_week_iso (const int32_t jdn)
 {
 	/*
 	W0 = mod (J, 7) + 1
@@ -619,7 +619,7 @@ int32_t get_day_of_week_iso (int32_t jdn)
 //! @retval true  윤년.
 //! @retval false 평년.
 //! 
-bool gregorian_calendar_is_leap_year (int32_t year)
+bool gregorian_calendar_is_leap_year (const int32_t year)
 {
 	if ( (0==(year%400)) 
 	     || 
@@ -640,7 +640,7 @@ bool gregorian_calendar_is_leap_year (int32_t year)
 //! 
 //! @return 성공 여부.
 //! 
-bool gregorian_calendar_get_last_day_of_month (int32_t year, int32_t month, int32_t* day)
+bool gregorian_calendar_get_last_day_of_month (const int32_t year, const int32_t month, int32_t* const day)
 {
 	int32_t month_days[12] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
 
@@ -671,7 +671,7 @@ bool gregorian_calendar_get_last_day_of_month (int32_t year, int32_t month, int3
 //! 
 //! @return 유효한 날짜 여부.
 //! 
-bool gregorian_calendar_is_valid_date (int32_t year, int32_t month, int32_t day)
+bool gregorian_calendar_is_valid_date (const int32_t year, const int32_t month, const int32_t day)
 {
 	int32_t last_day_of_month;
 
@@ -703,7 +703,7 @@ bool gregorian_calendar_is_valid_date (int32_t year, int32_t month, int32_t day)
 //! @param day_number     더 할 일 수.
 //! @param jdn            jdn.
 //! 
-void epoch_to_jdn (int32_t base_epoch_jdn, int32_t day_number, int32_t* jdn)
+void epoch_to_jdn (const int32_t base_epoch_jdn, const int32_t day_number, int32_t* const jdn)
 {	
 	*jdn = base_epoch_jdn + day_number;
 }
@@ -717,7 +717,7 @@ void epoch_to_jdn (int32_t base_epoch_jdn, int32_t day_number, int32_t* jdn)
 //! @param month          월.
 //! @param day            일.
 //! 
-void epoch_to_date (int32_t base_epoch_jdn, int32_t day_number, int32_t* year, int32_t* month, int32_t* day)
+void epoch_to_date (const int32_t base_epoch_jdn, const int32_t day_number, int32_t* const year, int32_t* const month, int32_t* const day)
 {
 	int32_t jdn;
 
@@ -737,7 +737,7 @@ void epoch_to_date (int32_t base_epoch_jdn, int32_t day_number, int32_t* year, i
 //! @param day_number     더 할 일 수.
 //! @param day_of_week    요일.
 //! 
-void epoch_to_day_of_week (int32_t base_epoch_jdn, int32_t day_number, int32_t* day_of_week)
+void epoch_to_day_of_week (const int32_t base_epoch_jdn, const int32_t day_number, int32_t* const day_of_week)
 {
 	int32_t jdn;
 
@@ -766,7 +766,7 @@ void epoch_to_day_of_week (int32_t base_epoch_jdn, int32_t day_number, int32_t* 
 //! }
 //! @endcode
 //! 
-void epoch_to_time (int32_t daysecond_number, int32_t* hour, int32_t* minute, int32_t* second)
+void epoch_to_time (const int32_t daysecond_number, int32_t* const hour, int32_t* const minute, int32_t* const second)
 {
 	*hour   =  daysecond_number / 3600;
 	*minute = (daysecond_number % 3600) / 60;
@@ -794,7 +794,7 @@ void epoch_to_time (int32_t daysecond_number, int32_t* hour, int32_t* minute, in
 //! }
 //! @endcode
 //! 
-int32_t epoch_second_get_day_number (jdn_time_t epoch_second)
+int32_t epoch_second_get_day_number (const jdn_time_t epoch_second)
 {
 	const int32_t second_per_day = 86400; // 24*60*60;
 	
@@ -822,7 +822,7 @@ int32_t epoch_second_get_day_number (jdn_time_t epoch_second)
 //! }
 //! @endcode
 //! 
-int32_t epoch_second_get_daysecond_number (jdn_time_t epoch_second)
+int32_t epoch_second_get_daysecond_number (const jdn_time_t epoch_second)
 {
 	const int32_t second_per_day = 86400; // 24*60*60;
 	
@@ -843,7 +843,7 @@ int32_t epoch_second_get_daysecond_number (jdn_time_t epoch_second)
 //! @param epoch_second   경과된 시간의 epoch 초.
 //! @param jdn            jdn.
 //! 
-void epoch_second_to_jdn (int32_t base_epoch_jdn, jdn_time_t epoch_second, int32_t* jdn)
+void epoch_second_to_jdn (const int32_t base_epoch_jdn, const jdn_time_t epoch_second, int32_t* const jdn)
 {
 	int32_t day_number;
 
@@ -867,7 +867,7 @@ void epoch_second_to_jdn (int32_t base_epoch_jdn, jdn_time_t epoch_second, int32
 //! @param minute         분.
 //! @param second         초.
 //! 
-void epoch_second_to_datetime (int32_t base_epoch_jdn, jdn_time_t epoch_second, int32_t* year, int32_t* month, int32_t* day, int32_t* day_of_week, int32_t* hour, int32_t* minute, int32_t* second)
+void epoch_second_to_datetime (const int32_t base_epoch_jdn, const jdn_time_t epoch_second, int32_t* const year, int32_t* const month, int32_t* const day, int32_t* const day_of_week, int32_t* const hour, int32_t* const minute, int32_t* const second)
 {
 	int32_t day_number;
 	int32_t daysecond_number;
@@ -898,7 +898,7 @@ void epoch_second_to_datetime (int32_t base_epoch_jdn, jdn_time_t epoch_second, 
 //! @param month          월.
 //! @param day            일.
 //! 
-void epoch_second_to_date (int32_t base_epoch_jdn, jdn_time_t epoch_second, int32_t* year, int32_t* month, int32_t* day)
+void epoch_second_to_date (const int32_t base_epoch_jdn, const jdn_time_t epoch_second, int32_t* const year, int32_t* const month, int32_t* const day)
 {
 	int32_t day_number;
 	
@@ -921,7 +921,7 @@ void epoch_second_to_date (int32_t base_epoch_jdn, jdn_time_t epoch_second, int3
 //! @param epoch_second   경과된 시간의 epoch 초.
 //! @param day_of_week    요일(미국 표준).
 //! 
-void epoch_second_to_day_of_week (int32_t base_epoch_jdn, jdn_time_t epoch_second, int32_t* day_of_week)
+void epoch_second_to_day_of_week (const int32_t base_epoch_jdn, const jdn_time_t epoch_second, int32_t* const day_of_week)
 {
 	int32_t day_number;
 	
@@ -945,7 +945,7 @@ void epoch_second_to_day_of_week (int32_t base_epoch_jdn, jdn_time_t epoch_secon
 //! @param minute         분.
 //! @param second         초.
 //! 
-void epoch_second_to_time (jdn_time_t epoch_second, int32_t* hour, int32_t* minute, int32_t* second)
+void epoch_second_to_time (const jdn_time_t epoch_second, int32_t* const hour, int32_t* const minute, int32_t* const second)
 {
 	int32_t daysecond_number;
 
@@ -968,7 +968,7 @@ void epoch_second_to_time (jdn_time_t epoch_second, int32_t* hour, int32_t* minu
 //! @param base_epoch_jdn 기준 epoch jdn.
 //! @param epoch_second   경과된 시간의 epoch 초.
 //! 
-void datetime_to_epoch_second (int32_t year, int32_t month, int32_t day, int32_t hour, int32_t minute, int32_t second, int32_t base_epoch_jdn, jdn_time_t* epoch_second)
+void datetime_to_epoch_second (const int32_t year, const int32_t month, const int32_t day, const int32_t hour, const int32_t minute, const int32_t second, const int32_t base_epoch_jdn, jdn_time_t* const epoch_second)
 {
 	const int32_t second_per_day = 86400; // 24*60*60;
 
@@ -1013,7 +1013,7 @@ int32_t unix_time_get_base_epoch_jdn (void)
 //! @param t   unix 초 시간.
 //! @param jdn jdn.
 //! 
-void unix_time_to_jdn (jdn_time_t t, int32_t* jdn)
+void unix_time_to_jdn (const jdn_time_t t, int32_t* const jdn)
 {
 	epoch_second_to_jdn (unix_time_get_base_epoch_jdn(), t, jdn);
 }
@@ -1030,7 +1030,7 @@ void unix_time_to_jdn (jdn_time_t t, int32_t* jdn)
 //! @param minute         분.
 //! @param second         초.
 //! 
-void unix_time_to_datetime (jdn_time_t t, int32_t* year, int32_t* month, int32_t* day, int32_t* day_of_week, int32_t* hour, int32_t* minute, int32_t* second)
+void unix_time_to_datetime (const jdn_time_t t, int32_t* const year, int32_t* const month, int32_t* const day, int32_t* const day_of_week, int32_t* const hour, int32_t* const minute, int32_t* const second)
 {
 	epoch_second_to_datetime (unix_time_get_base_epoch_jdn(), t, year, month, day, day_of_week, hour, minute, second);
 }
@@ -1043,7 +1043,7 @@ void unix_time_to_datetime (jdn_time_t t, int32_t* year, int32_t* month, int32_t
 //! @param month 월.
 //! @param day   일.
 //! 
-void unix_time_to_date (jdn_time_t t, int32_t* year, int32_t* month, int32_t* day)
+void unix_time_to_date (const jdn_time_t t, int32_t* const year, int32_t* const month, int32_t* const day)
 {
 	epoch_second_to_date (unix_time_get_base_epoch_jdn(), t, year, month, day);
 }
@@ -1054,7 +1054,7 @@ void unix_time_to_date (jdn_time_t t, int32_t* year, int32_t* month, int32_t* da
 //! @param t           unix 초 시간.
 //! @param day_of_week 요일(미국 표준).
 //! 
-void unix_time_to_day_of_week (jdn_time_t t, int32_t* day_of_week)
+void unix_time_to_day_of_week (const jdn_time_t t, int32_t* const day_of_week)
 {
 	epoch_second_to_day_of_week (unix_time_get_base_epoch_jdn(), t, day_of_week);
 }
@@ -1066,7 +1066,7 @@ void unix_time_to_day_of_week (jdn_time_t t, int32_t* day_of_week)
 //! @param hour   시.
 //! @param minute 분.
 //! @param second 초.
-void unix_time_to_time (jdn_time_t t, int32_t* hour, int32_t* minute, int32_t* second)
+void unix_time_to_time (const jdn_time_t t, int32_t* const hour, int32_t* const minute, int32_t* const second)
 {
 	epoch_second_to_time (t, hour, minute, second);
 }
@@ -1082,7 +1082,7 @@ void unix_time_to_time (jdn_time_t t, int32_t* hour, int32_t* minute, int32_t* s
 //! @param second 초.
 //! @param t      unix 초 시간.
 //! 
-void datetime_to_unix_time (int32_t year, int32_t month, int32_t day, int32_t hour, int32_t minute, int32_t second, jdn_time_t* t)
+void datetime_to_unix_time (const int32_t year, const int32_t month, const int32_t day, const int32_t hour, const int32_t minute, const int32_t second, jdn_time_t* const t)
 {
 	datetime_to_epoch_second (year, month, day, hour, minute, second, unix_time_get_base_epoch_jdn(), t);
 }
