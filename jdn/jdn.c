@@ -1312,7 +1312,7 @@ int main (int argc, char* argv[])
 	t = (jdn_time_t)(time(NULL) + gmt_plus_9);
 	day_count = (int32_t)(t / 86400);
 
-#if 0
+#if 1
 	// 64-bit time_t인 경우, 2038년 1월 19일 이후의 시간도 표현 가능.
 	printf("seconds: time() = %lld \r\n", t);
 	printf ("days   : %lld / 86400 = %d\r\n", t, day_count);
