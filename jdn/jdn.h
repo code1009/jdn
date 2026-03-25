@@ -46,7 +46,7 @@ void jdn_to_gregorian_calendar_date (int32_t jdn, int32_t* year, int32_t* month,
 void jdn_to_julian_calendar_date    (int32_t jdn, int32_t* year, int32_t* month, int32_t* day);
 
 //===========================================================================
-int32_t  calendar_date_from_1582_10_05_to_1582_10_14 (int32_t year, int32_t month, int32_t day);
+int32_t calendar_date_from_1582_10_05_to_1582_10_14 (int32_t year, int32_t month, int32_t day);
 
 bool calendar_date_to_jdn (int32_t year, int32_t month, int32_t day, int32_t* jdn);
 void jdn_to_calendar_date (int32_t jdn, int32_t* year, int32_t* month, int32_t* day);
