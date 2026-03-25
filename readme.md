@@ -31,6 +31,25 @@ rtc나 log관련 시간처리 할 때 용이합니다.
 
 ## 주요 함수 목록 및 설명
 
+
+### 달력 변환 함수
+ 
+- `void calendar_date_to_jdn(const int32_t year, const int32_t month, const int32_t day, int32_t* const jdn);`
+  - 년월일 → JDN
+
+- `void jdn_to_calendar_date(const int32_t jdn, int32_t* const year, int32_t* const month, int32_t* const day);`
+  - JDN → 년월일
+
+- `void gregorian_calendar_date_to_jdn(const int32_t year, const int32_t month, const int32_t day, int32_t* const jdn);`
+  - 그레고리력 → JDN
+- `void julian_calendar_date_to_jdn(const int32_t year, const int32_t month, const int32_t day, int32_t* const jdn);`
+  - 율리우스력 → JDN
+
+- `void jdn_to_gregorian_calendar_date(const int32_t jdn, int32_t* const year, int32_t* const month, int32_t* const day);`
+  - JDN → 그레고리력
+- `void jdn_to_julian_calendar_date(const int32_t jdn, int32_t* const year, int32_t* const month, int32_t* const day);`
+  - JDN → 율리우스력
+
 ### JDN 변환 함수
 
 - `void jdn_to_modified_jdn(const int32_t jdn, int32_t* const modified_jdn);`
@@ -42,16 +61,6 @@ rtc나 log관련 시간처리 할 때 용이합니다.
 - `void jdn_to_unix_time_day_count(const int32_t jdn, int32_t* const unix_time_day_count);`
   - JDN → Unix Epoch 일수 변환
 
-### 달력 변환 함수
-
-- `void gregorian_calendar_date_to_jdn(const int32_t year, const int32_t month, const int32_t day, int32_t* const jdn);`
-  - 그레고리력 → JDN
-- `void julian_calendar_date_to_jdn(const int32_t year, const int32_t month, const int32_t day, int32_t* const jdn);`
-  - 율리우스력 → JDN
-- `void jdn_to_gregorian_calendar_date(const int32_t jdn, int32_t* const year, int32_t* const month, int32_t* const day);`
-  - JDN → 그레고리력
-- `void jdn_to_julian_calendar_date(const int32_t jdn, int32_t* const year, int32_t* const month, int32_t* const day);`
-  - JDN → 율리우스력
 
 ### 날짜 유효성/윤년/요일
 
@@ -87,8 +96,8 @@ rtc나 log관련 시간처리 할 때 용이합니다.
 
 ```c
 int32_t jdn, year, month, day;
-gregorian_calendar_date_to_jdn(2024, 3, 25, &jdn); // 2024-03-25 → JDN
-jdn_to_gregorian_calendar_date(jdn, &year, &month, &day); // JDN → 2024-03-25
+calendar_date_to_jdn(2024, 3, 25, &jdn); // 2024-03-25 → JDN
+jdn_to_calendar_date(jdn, &year, &month, &day); // JDN → 2024-03-25
 ```
 
 ---
