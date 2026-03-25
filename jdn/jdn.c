@@ -131,7 +131,7 @@ void jdn_to_modified_jdn (const int32_t jdn, int32_t* const modified_jdn)
 	# Modified JD
 	
 	Epoch:       0h Nov 17, 1858
-	Calculation: JD − 2400000.5
+	Calculation: JD - 2400000.5
 	*/
 
 	*modified_jdn = jdn-2400001;
@@ -151,7 +151,7 @@ void jdn_to_truncated_jd (const int32_t jdn, int32_t* const truncated_jd)
 	Introduced by NASA in 1979
 	
 	Epoch:       0h May 24, 1968
-	Calculation: floor (JD − 2440000.5)
+	Calculation: floor (JD - 2440000.5)
 
 	cf: 
 	ceil () 소수점 이하 올림
@@ -176,7 +176,7 @@ void jdn_to_lilian_date (const int32_t jdn, int32_t* const lilian_date)
 	Count of days of the Gregorian calendar
 	
 	Epoch:       Oct 15, 1582
-	Calculation: floor (JD − 2299159.5)
+	Calculation: floor (JD - 2299159.5)
 	*/
 
 	*lilian_date = jdn-2299160;
@@ -196,7 +196,7 @@ void jdn_to_unix_time_day_count (const int32_t jdn, int32_t* const unix_time_day
 	Count of seconds
 
 	Epoch:       0h Jan 1, 1970
-	Calculation: (JD − 2440587.5) × 86400
+	Calculation: (JD - 2440587.5) × 86400
 	*/
 
 	*unix_time_day_count = jdn-2440588;
@@ -1139,7 +1139,7 @@ void show (
 	jdn_to_lilian_date        (jdn, &lilian_date        );
 	jdn_to_unix_time_day_count(jdn, &unix_time_day_count);
 
-	printf ("%+05d-%02d-%02d(%s) %02d:%02d:%02d = %8d / MJDN=%8d, TJD=%8d, LILIAN=%8d, UNIX=%8d \r\n", 
+	printf ("%+05d-%02d-%02d(%s) %02d:%02d:%02d = JDN(%8d), MJDN(%8d), TJD(%8d), LILIAN(%8d), UNIX(%8d) \n", 
 		year,month,day, day_of_week, 
 		hour, minute, second,
 		jdn,
@@ -1169,7 +1169,8 @@ int main (int argc, char* argv[])
 
 
 	//-----------------------------------------------------------------------
-	// 12h Jan 1, 4713 BC
+	// 1st-Jan 1, 4713 BC
+	printf("# 1st-Jan 1, 4713 BC\n");
 	jdn = 0;
 	jdn_to_calendar_date(jdn, &year,&month,&day); day_of_week = get_day_of_week_us(jdn); show(jdn, year, month, day, day_of_week, hour, minute, second);
 
@@ -1177,42 +1178,59 @@ int main (int argc, char* argv[])
 	month =1;
 	day   =1;
 	calendar_date_to_jdn(year,month,day,   &jdn); day_of_week = get_day_of_week_us(jdn); show(jdn, year, month, day, day_of_week, hour, minute, second);
-	printf ("\r\n");
 
+	printf("\n");
 
 
 	//-----------------------------------------------------------------------
-	// BC 1
+	printf("# 1st-Jan 1, 4712 BC\n");
+	year  =-4711;
+	month =1;
+	day   =1;
+	calendar_date_to_jdn(year,month,day,   &jdn); day_of_week = get_day_of_week_us(jdn); show(jdn, year, month, day, day_of_week, hour, minute, second);
+	
+	printf ("\n");
+
+
+	//-----------------------------------------------------------------------
+	// 1st-Jan, 1 BC
+	printf("# 1st-Jan, 1 BC\n");
 	year  =0;
 	month =1;
 	day   =1;
 	calendar_date_to_jdn(year,month,day,   &jdn); day_of_week = get_day_of_week_us(jdn); show(jdn, year, month, day, day_of_week, hour, minute, second);
 	jdn_to_calendar_date(jdn, &year,&month,&day); day_of_week = get_day_of_week_us(jdn); show(jdn, year, month, day, day_of_week, hour, minute, second);
-	printf ("\r\n");
-
+	
+	printf ("\n");
 
 
 	//-----------------------------------------------------------------------
-	// 1 AD
+	// 1st-Jan, 1 AD
+	printf("# 1st-Jan, 1 AD\n");
 	year  =1;
 	month =1;
 	day   =1;
 	calendar_date_to_jdn(year,month,day,   &jdn); day_of_week = get_day_of_week_us(jdn); show(jdn, year, month, day, day_of_week, hour, minute, second);
 	jdn_to_calendar_date(jdn, &year,&month,&day); day_of_week = get_day_of_week_us(jdn); show(jdn, year, month, day, day_of_week, hour, minute, second);
-	printf ("\r\n");
+	
+	printf ("\n");
 
 
 	//-----------------------------------------------------------------------
-	// AD 2
-	year  =2; 
+	// 1st-Jan, 2 AD
+	printf("# 1st-Jan, 2 AD\n");
+	year  =2;
 	month =1;
 	day   =1;
 	calendar_date_to_jdn(year,month,day,   &jdn); day_of_week = get_day_of_week_us(jdn); show(jdn, year, month, day, day_of_week, hour, minute, second);
 	jdn_to_calendar_date(jdn, &year,&month,&day); day_of_week = get_day_of_week_us(jdn); show(jdn, year, month, day, day_of_week, hour, minute, second);
-	printf ("\r\n");
+	
+	printf ("\n");
 
 
 	//-----------------------------------------------------------------------
+	// jdn: 2299161 = 1582-10-15 Gregorian Calendar Date
+	printf("# jdn: 2299161 = 1582-10-15 Gregorian Calendar Date\n");
 	jdn = 2299161-2;
 	jdn_to_calendar_date(jdn, &year,&month,&day); day_of_week = get_day_of_week_us(jdn); show(jdn, year, month, day, day_of_week, hour, minute, second);
 
@@ -1225,7 +1243,10 @@ int main (int argc, char* argv[])
 	jdn = 2299161+1;
 	jdn_to_calendar_date(jdn, &year,&month,&day); day_of_week = get_day_of_week_us(jdn); show(jdn, year, month, day, day_of_week, hour, minute, second);
 
+	printf("\n");
 
+
+	//-----------------------------------------------------------------------
 	year  =1582;
 	month =10;
 	day   = 3;
@@ -1236,8 +1257,13 @@ int main (int argc, char* argv[])
 	day   = 4;
 	calendar_date_to_jdn(year,month,day,   &jdn); day_of_week = get_day_of_week_us(jdn); show(jdn, year, month, day, day_of_week, hour, minute, second);
 
-	// Lilian date : Oct 15, 1582 = floor (JD − 2299159.5) ; Count of days of the Gregorian calendar
-	year  =1582; 
+	printf("\n");
+
+
+	//-----------------------------------------------------------------------
+	// Lilian date : Oct 15, 1582 = floor (JD - 2299159.5) ; Count of days of the Gregorian calendar
+	printf("# Lilian date : Oct 15, 1582 = floor (JD - 2299159.5)\n");
+	year  =1582;
 	month =10;
 	day   =15;
 	calendar_date_to_jdn(year,month,day,   &jdn); day_of_week = get_day_of_week_us(jdn); show(jdn, year, month, day, day_of_week, hour, minute, second);
@@ -1246,66 +1272,67 @@ int main (int argc, char* argv[])
 	month =10;
 	day   =16;
 	calendar_date_to_jdn(year,month,day,   &jdn); day_of_week = get_day_of_week_us(jdn); show(jdn, year, month, day, day_of_week, hour, minute, second);
-	printf ("\r\n");
+	
+	printf ("\n");
 
 
 	//-----------------------------------------------------------------------
 	// Reduced JD (JD - 2400000)
-	year  =1858; 
+	printf("# Reduced JD (JD - 2400000)\n");
+	year  =1858;
 	month =11;
 	day   =16;
 	calendar_date_to_jdn(year,month,day,   &jdn); day_of_week = get_day_of_week_us(jdn); show(jdn, year, month, day, day_of_week, hour, minute, second);
 	jdn_to_calendar_date(jdn, &year,&month,&day); day_of_week = get_day_of_week_us(jdn); show(jdn, year, month, day, day_of_week, hour, minute, second);
-	printf ("\r\n");
+	
+	printf ("\n");
 
 
 	//-----------------------------------------------------------------------
-	// Modified JD: 0h Nov 17, 1858 = (JD − 2400000.5)
+	// Modified JD: 0h Nov 17, 1858 = (JD - 2400000.5)
+	printf("# Modified JD: 0h Nov 17, 1858 = (JD - 2400000.5)\n");
 	year  =1858;
 	month =11;
 	day   =17;
 	calendar_date_to_jdn(year,month,day,   &jdn); day_of_week = get_day_of_week_us(jdn); show(jdn, year, month, day, day_of_week, hour, minute, second);
 	jdn_to_calendar_date(jdn, &year,&month,&day); day_of_week = get_day_of_week_us(jdn); show(jdn, year, month, day, day_of_week, hour, minute, second);
-	printf ("\r\n");
-
+	
+	printf ("\n");
+	
 
 	//-----------------------------------------------------------------------
-	// Truncated JD: 0h May 24, 1968 = floor (JD − 2440000.5) ; Introduced by NASA in 1979
-	year  =1968; 
+	// Truncated JD: 0h May 24, 1968 = floor (JD - 2440000.5) ; Introduced by NASA in 1979
+	printf("# Truncated JD: 0h May 24, 1968 = floor (JD - 2440000.5)\n");
+	year  =1968;
 	month =5;
 	day   =24;
 	calendar_date_to_jdn(year,month,day,   &jdn); day_of_week = get_day_of_week_us(jdn); show(jdn, year, month, day, day_of_week, hour, minute, second);
 	jdn_to_calendar_date(jdn, &year,&month,&day); day_of_week = get_day_of_week_us(jdn); show(jdn, year, month, day, day_of_week, hour, minute, second);
-	printf ("\r\n");
+	
+	printf ("\n");
 
 
 	//-----------------------------------------------------------------------
-	// Unix Time: 0h Jan 1, 1970 = (JD − 2440587.5) × 86400
-	year  =1970; 
+	// Unix Time: 0h Jan 1, 1970 = (JD - 2440587.5) × 86400
+	printf("# Unix Time: 0h Jan 1, 1970 = (JD - 2440587.5) × 86400\n");
+	year  =1970;
 	month =1;
 	day   =1;
 	calendar_date_to_jdn(year,month,day,   &jdn); day_of_week = get_day_of_week_us(jdn); show(jdn, year, month, day, day_of_week, hour, minute, second);
 	jdn_to_calendar_date(jdn, &year,&month,&day); day_of_week = get_day_of_week_us(jdn); show(jdn, year, month, day, day_of_week, hour, minute, second);
-	printf ("\r\n");
+	
+	printf ("\n");
 
 
 	//-----------------------------------------------------------------------
+	printf("# 1st-Jan, 2000 AD\n");
 	year  =2000;
 	month =1;
 	day   =1;
 	calendar_date_to_jdn(year,month,day,   &jdn); day_of_week = get_day_of_week_us(jdn); show(jdn, year, month, day, day_of_week, hour, minute, second);
 	jdn_to_calendar_date(jdn, &year,&month,&day); day_of_week = get_day_of_week_us(jdn); show(jdn, year, month, day, day_of_week, hour, minute, second);
-	printf ("\r\n");
-
-
-
-	//-----------------------------------------------------------------------
-	year  =2018;
-	month =10;
-	day   =9;
-	calendar_date_to_jdn(year,month,day,   &jdn); day_of_week = get_day_of_week_us(jdn); show(jdn, year, month, day, day_of_week, hour, minute, second);
-	jdn_to_calendar_date(jdn, &year,&month,&day); day_of_week = get_day_of_week_us(jdn); show(jdn, year, month, day, day_of_week, hour, minute, second);
-	printf ("\r\n");
+	
+	printf ("\n");
 
 
 	//-----------------------------------------------------------------------
@@ -1314,12 +1341,10 @@ int main (int argc, char* argv[])
 
 #if 1
 	// 64-bit time_t인 경우, 2038년 1월 19일 이후의 시간도 표현 가능.
-	printf("seconds: time() = %lld \r\n", t);
-	printf ("days   : %lld / 86400 = %d\r\n", t, day_count);
+	printf ("# now unix seconds: time() = %lld, day_count = %lld / 86400 = %d\n", t, t, day_count);
 #else
 	// 32-bit time_t인 경우, 2038년 1월 19일 이후의 시간은 표현 불가능.
-	printf("seconds: time() = %ld \r\n", t);
-	printf("days   : %ld / 86400 = %d\r\n", t, day_count);
+	printf("# now unix seconds: time() = %ld, day_count = %ld / 86400 = %d\n", t, t, day_count);
 #endif
 
 	unix_time_to_jdn     (t, &jdn);
@@ -1330,7 +1355,7 @@ int main (int argc, char* argv[])
 	calendar_date_to_jdn(year,month,day,   &jdn); day_of_week = get_day_of_week_us(jdn); show(jdn, year, month, day, day_of_week, hour, minute, second);
 	jdn_to_calendar_date(jdn, &year,&month,&day); day_of_week = get_day_of_week_us(jdn); show(jdn, year, month, day, day_of_week, hour, minute, second);
 
-	printf ("\r\n");
+	printf ("\n");
 
 	return 0;
 }
@@ -1338,50 +1363,62 @@ int main (int argc, char* argv[])
 
 /*
 
--4712-01-01(월) 00:00:00 =        0 / MJDN=-2400001, TJD=-2440001, LILIAN=-2299160, UNIX=-2440588
--4712-01-01(월) 00:00:00 =        0 / MJDN=-2400001, TJD=-2440001, LILIAN=-2299160, UNIX=-2440588
+# 1st-Jan 1, 4713 BC
+-4712-01-01(월) 00:00:00 = JDN(       0), MJDN(-2400001), TJD(-2440001), LILIAN(-2299160), UNIX(-2440588)
+-4712-01-01(월) 00:00:00 = JDN(       0), MJDN(-2400001), TJD(-2440001), LILIAN(-2299160), UNIX(-2440588)
 
-+0000-01-01(목) 00:00:00 =  1721058 / MJDN= -678943, TJD= -718943, LILIAN= -578102, UNIX= -719530
-+0000-01-01(목) 00:00:00 =  1721058 / MJDN= -678943, TJD= -718943, LILIAN= -578102, UNIX= -719530
+# 1st-Jan 1, 4712 BC
+-4711-01-01(수) 00:00:00 = JDN(     366), MJDN(-2399635), TJD(-2439635), LILIAN(-2298794), UNIX(-2440222)
 
-+0001-01-01(토) 00:00:00 =  1721424 / MJDN= -678577, TJD= -718577, LILIAN= -577736, UNIX= -719164
-+0001-01-01(토) 00:00:00 =  1721424 / MJDN= -678577, TJD= -718577, LILIAN= -577736, UNIX= -719164
+# 1st-Jan, 1 BC
++0000-01-01(목) 00:00:00 = JDN( 1721058), MJDN( -678943), TJD( -718943), LILIAN( -578102), UNIX( -719530)
++0000-01-01(목) 00:00:00 = JDN( 1721058), MJDN( -678943), TJD( -718943), LILIAN( -578102), UNIX( -719530)
 
-+0002-01-01(일) 00:00:00 =  1721789 / MJDN= -678212, TJD= -718212, LILIAN= -577371, UNIX= -718799
-+0002-01-01(일) 00:00:00 =  1721789 / MJDN= -678212, TJD= -718212, LILIAN= -577371, UNIX= -718799
+# 1st-Jan, 1 AD
++0001-01-01(토) 00:00:00 = JDN( 1721424), MJDN( -678577), TJD( -718577), LILIAN( -577736), UNIX( -719164)
++0001-01-01(토) 00:00:00 = JDN( 1721424), MJDN( -678577), TJD( -718577), LILIAN( -577736), UNIX( -719164)
 
-+1582-10-03(수) 00:00:00 =  2299159 / MJDN= -100842, TJD= -140842, LILIAN=      -1, UNIX= -141429
-+1582-10-04(목) 00:00:00 =  2299160 / MJDN= -100841, TJD= -140841, LILIAN=       0, UNIX= -141428
-+1582-10-15(금) 00:00:00 =  2299161 / MJDN= -100840, TJD= -140840, LILIAN=       1, UNIX= -141427
-+1582-10-16(토) 00:00:00 =  2299162 / MJDN= -100839, TJD= -140839, LILIAN=       2, UNIX= -141426
-+1582-10-03(수) 00:00:00 =  2299159 / MJDN= -100842, TJD= -140842, LILIAN=      -1, UNIX= -141429
-+1582-10-04(목) 00:00:00 =  2299160 / MJDN= -100841, TJD= -140841, LILIAN=       0, UNIX= -141428
-+1582-10-15(금) 00:00:00 =  2299161 / MJDN= -100840, TJD= -140840, LILIAN=       1, UNIX= -141427
-+1582-10-16(토) 00:00:00 =  2299162 / MJDN= -100839, TJD= -140839, LILIAN=       2, UNIX= -141426
+# 1st-Jan, 2 AD
++0002-01-01(일) 00:00:00 = JDN( 1721789), MJDN( -678212), TJD( -718212), LILIAN( -577371), UNIX( -718799)
++0002-01-01(일) 00:00:00 = JDN( 1721789), MJDN( -678212), TJD( -718212), LILIAN( -577371), UNIX( -718799)
 
-+1858-11-16(화) 00:00:00 =  2400000 / MJDN=      -1, TJD=  -40001, LILIAN=  100840, UNIX=  -40588
-+1858-11-16(화) 00:00:00 =  2400000 / MJDN=      -1, TJD=  -40001, LILIAN=  100840, UNIX=  -40588
+# jdn: 2299161 = 1582-10-15 Gregorian Calendar Date
++1582-10-03(수) 00:00:00 = JDN( 2299159), MJDN( -100842), TJD( -140842), LILIAN(      -1), UNIX( -141429)
++1582-10-04(목) 00:00:00 = JDN( 2299160), MJDN( -100841), TJD( -140841), LILIAN(       0), UNIX( -141428)
++1582-10-15(금) 00:00:00 = JDN( 2299161), MJDN( -100840), TJD( -140840), LILIAN(       1), UNIX( -141427)
++1582-10-16(토) 00:00:00 = JDN( 2299162), MJDN( -100839), TJD( -140839), LILIAN(       2), UNIX( -141426)
 
-+1858-11-17(수) 00:00:00 =  2400001 / MJDN=       0, TJD=  -40000, LILIAN=  100841, UNIX=  -40587
-+1858-11-17(수) 00:00:00 =  2400001 / MJDN=       0, TJD=  -40000, LILIAN=  100841, UNIX=  -40587
++1582-10-03(수) 00:00:00 = JDN( 2299159), MJDN( -100842), TJD( -140842), LILIAN(      -1), UNIX( -141429)
++1582-10-04(목) 00:00:00 = JDN( 2299160), MJDN( -100841), TJD( -140841), LILIAN(       0), UNIX( -141428)
 
-+1968-05-24(금) 00:00:00 =  2440001 / MJDN=   40000, TJD=       0, LILIAN=  140841, UNIX=    -587
-+1968-05-24(금) 00:00:00 =  2440001 / MJDN=   40000, TJD=       0, LILIAN=  140841, UNIX=    -587
+# Lilian date : Oct 15, 1582 = floor (JD - 2299159.5)
++1582-10-15(금) 00:00:00 = JDN( 2299161), MJDN( -100840), TJD( -140840), LILIAN(       1), UNIX( -141427)
++1582-10-16(토) 00:00:00 = JDN( 2299162), MJDN( -100839), TJD( -140839), LILIAN(       2), UNIX( -141426)
 
-+1970-01-01(목) 00:00:00 =  2440588 / MJDN=   40587, TJD=     587, LILIAN=  141428, UNIX=       0
-+1970-01-01(목) 00:00:00 =  2440588 / MJDN=   40587, TJD=     587, LILIAN=  141428, UNIX=       0
+# Reduced JD (JD - 2400000)
++1858-11-16(화) 00:00:00 = JDN( 2400000), MJDN(      -1), TJD(  -40001), LILIAN(  100840), UNIX(  -40588)
++1858-11-16(화) 00:00:00 = JDN( 2400000), MJDN(      -1), TJD(  -40001), LILIAN(  100840), UNIX(  -40588)
 
-+2000-01-01(토) 00:00:00 =  2451545 / MJDN=   51544, TJD=   11544, LILIAN=  152385, UNIX=   10957
-+2000-01-01(토) 00:00:00 =  2451545 / MJDN=   51544, TJD=   11544, LILIAN=  152385, UNIX=   10957
+# Modified JD: 0h Nov 17, 1858 = (JD - 2400000.5)
++1858-11-17(수) 00:00:00 = JDN( 2400001), MJDN(       0), TJD(  -40000), LILIAN(  100841), UNIX(  -40587)
++1858-11-17(수) 00:00:00 = JDN( 2400001), MJDN(       0), TJD(  -40000), LILIAN(  100841), UNIX(  -40587)
 
-+2018-10-09(화) 00:00:00 =  2458401 / MJDN=   58400, TJD=   18400, LILIAN=  159241, UNIX=   17813
-+2018-10-09(화) 00:00:00 =  2458401 / MJDN=   58400, TJD=   18400, LILIAN=  159241, UNIX=   17813
+# Truncated JD: 0h May 24, 1968 = floor (JD - 2440000.5)
++1968-05-24(금) 00:00:00 = JDN( 2440001), MJDN(   40000), TJD(       0), LILIAN(  140841), UNIX(    -587)
++1968-05-24(금) 00:00:00 = JDN( 2440001), MJDN(   40000), TJD(       0), LILIAN(  140841), UNIX(    -587)
 
-seconds: time() = 1774436776
-days   : 1774436776 / 86400 = 20537
-+2026-03-25(수) 11:06:16 =  2461125 / MJDN=   61124, TJD=   21124, LILIAN=  161965, UNIX=   20537
-+2026-03-25(수) 11:06:16 =  2461125 / MJDN=   61124, TJD=   21124, LILIAN=  161965, UNIX=   20537
-+2026-03-25(수) 11:06:16 =  2461125 / MJDN=   61124, TJD=   21124, LILIAN=  161965, UNIX=   20537
+# Unix Time: 0h Jan 1, 1970 = (JD - 2440587.5) × 86400
++1970-01-01(목) 00:00:00 = JDN( 2440588), MJDN(   40587), TJD(     587), LILIAN(  141428), UNIX(       0)
++1970-01-01(목) 00:00:00 = JDN( 2440588), MJDN(   40587), TJD(     587), LILIAN(  141428), UNIX(       0)
+
+# 1st-Jan, 2000 AD
++2000-01-01(토) 00:00:00 = JDN( 2451545), MJDN(   51544), TJD(   11544), LILIAN(  152385), UNIX(   10957)
++2000-01-01(토) 00:00:00 = JDN( 2451545), MJDN(   51544), TJD(   11544), LILIAN(  152385), UNIX(   10957)
+
+# now unix seconds: time() = 1774447603, day_count = 1774447603 / 86400 = 20537
++2026-03-25(수) 14:06:43 = JDN( 2461125), MJDN(   61124), TJD(   21124), LILIAN(  161965), UNIX(   20537)
++2026-03-25(수) 14:06:43 = JDN( 2461125), MJDN(   61124), TJD(   21124), LILIAN(  161965), UNIX(   20537)
++2026-03-25(수) 14:06:43 = JDN( 2461125), MJDN(   61124), TJD(   21124), LILIAN(  161965), UNIX(   20537)
 
 */
 
