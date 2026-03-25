@@ -320,7 +320,7 @@ void jdn_to_gregorian_calendar_date (const int32_t jdn, int32_t* const year, int
 //! @param month 월.
 //! @param day   일.
 //! 
-void jdn_to_gregorian_calendar_date (int32_t jdn, int32_t* year, int32_t* month, int32_t* day)
+void jdn_to_gregorian_calendar_date(const int32_t jdn, int32_t* const year, int32_t* const month, int32_t* const day)
 {
 	const int32_t y = 4716;
 	const int32_t j = 1401;
@@ -867,7 +867,11 @@ void epoch_second_to_jdn (const int32_t base_epoch_jdn, const jdn_time_t epoch_s
 //! @param minute         분.
 //! @param second         초.
 //! 
-void epoch_second_to_datetime (const int32_t base_epoch_jdn, const jdn_time_t epoch_second, int32_t* const year, int32_t* const month, int32_t* const day, int32_t* const day_of_week, int32_t* const hour, int32_t* const minute, int32_t* const second)
+void epoch_second_to_datetime (
+	const int32_t base_epoch_jdn, const jdn_time_t epoch_second, 
+	int32_t* const year, int32_t* const month, int32_t* const day, int32_t* const day_of_week, 
+	int32_t* const hour, int32_t* const minute, int32_t* const second
+)
 {
 	int32_t day_number;
 	int32_t daysecond_number;
@@ -898,7 +902,10 @@ void epoch_second_to_datetime (const int32_t base_epoch_jdn, const jdn_time_t ep
 //! @param month          월.
 //! @param day            일.
 //! 
-void epoch_second_to_date (const int32_t base_epoch_jdn, const jdn_time_t epoch_second, int32_t* const year, int32_t* const month, int32_t* const day)
+void epoch_second_to_date (
+	const int32_t base_epoch_jdn, const jdn_time_t epoch_second, 
+	int32_t* const year, int32_t* const month, int32_t* const day
+)
 {
 	int32_t day_number;
 	
@@ -968,7 +975,11 @@ void epoch_second_to_time (const jdn_time_t epoch_second, int32_t* const hour, i
 //! @param base_epoch_jdn 기준 epoch jdn.
 //! @param epoch_second   경과된 시간의 epoch 초.
 //! 
-void datetime_to_epoch_second (const int32_t year, const int32_t month, const int32_t day, const int32_t hour, const int32_t minute, const int32_t second, const int32_t base_epoch_jdn, jdn_time_t* const epoch_second)
+void datetime_to_epoch_second (
+	const int32_t year, const int32_t month, const int32_t day, 
+	const int32_t hour, const int32_t minute, const int32_t second, 
+	const int32_t base_epoch_jdn, jdn_time_t* const epoch_second
+)
 {
 	const int32_t second_per_day = 86400; // 24*60*60;
 
@@ -1030,7 +1041,11 @@ void unix_time_to_jdn (const jdn_time_t t, int32_t* const jdn)
 //! @param minute         분.
 //! @param second         초.
 //! 
-void unix_time_to_datetime (const jdn_time_t t, int32_t* const year, int32_t* const month, int32_t* const day, int32_t* const day_of_week, int32_t* const hour, int32_t* const minute, int32_t* const second)
+void unix_time_to_datetime (
+	const jdn_time_t t, 
+	int32_t* const year, int32_t* const month, int32_t* const day, int32_t* const day_of_week, 
+	int32_t* const hour, int32_t* const minute, int32_t* const second
+)
 {
 	epoch_second_to_datetime (unix_time_get_base_epoch_jdn(), t, year, month, day, day_of_week, hour, minute, second);
 }
@@ -1082,7 +1097,11 @@ void unix_time_to_time (const jdn_time_t t, int32_t* const hour, int32_t* const 
 //! @param second 초.
 //! @param t      unix 초 시간.
 //! 
-void datetime_to_unix_time (const int32_t year, const int32_t month, const int32_t day, const int32_t hour, const int32_t minute, const int32_t second, jdn_time_t* const t)
+void datetime_to_unix_time (
+	const int32_t year, const int32_t month, const int32_t day, 
+	const int32_t hour, const int32_t minute, const int32_t second, 
+	jdn_time_t* const t
+)
 {
 	datetime_to_epoch_second (year, month, day, hour, minute, second, unix_time_get_base_epoch_jdn(), t);
 }
