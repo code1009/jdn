@@ -642,18 +642,21 @@ bool gregorian_calendar_is_leap_year (const int32_t year)
 //! 
 bool gregorian_calendar_get_last_day_of_month (const int32_t year, const int32_t month, int32_t* const day)
 {
-	int32_t month_days[12] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
+	const int32_t month_days[12] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
+
+
+	if ( !( (0<month) && (month<13)) )
+	{
+		return false;
+	}
 
 
 	if (gregorian_calendar_is_leap_year(year))
 	{
-		month_days[1] = 29;
-	}
-
-	
-	if ( !( (0<month) && (month<13)) )
-	{
-		return false;
+		if (month == 2)
+		{
+			return 29;
+		}
 	}
 
 
