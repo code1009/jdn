@@ -1200,8 +1200,8 @@ void show (
 		);
 }
 
-int main (int argc, char* argv[])
 //int jdn_test ()
+int main (int argc, char* argv[])
 {
 	int32_t jdn         = 0;
 	int32_t year        = 0;
