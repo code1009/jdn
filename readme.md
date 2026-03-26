@@ -75,8 +75,9 @@ rtc나 log관련 시간처리 할 때 용이합니다.
 
 ```c
 int32_t jdn, year, month, day;
-calendar_date_to_jdn(2024, 3, 25, &jdn); // 2024-03-25 → JDN
-jdn_to_calendar_date(jdn, &year, &month, &day); // JDN → 2024-03-25
+calendar_date_to_jdn(2026, 3, 31, &jdn); // 2026-03-31 → JDN
+jdn++;
+jdn_to_calendar_date(jdn, &year, &month, &day); // JDN → 2026-04-01
 ```
 
 ---
