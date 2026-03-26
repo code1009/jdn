@@ -1117,6 +1117,37 @@ void datetime_to_unix_time (
 
 
 
+/////////////////////////////////////////////////////////////////////////////
+//===========================================================================
+// c언어 표준과 c 표준 라이브러리에서 제공하는 bool 타입과 true/false 매크로 확인
+//C:\Program Files\Microsoft Visual Studio\2022\Professional\VC\Tools\MSVC\14.44.35207\include\stdbool.h
+#if 0
+//
+// stdbool.h
+//
+//      Copyright (c) Microsoft Corporation. All rights reserved.
+//
+// The C Standard Library <stdbool.h> header.
+//
+#ifndef _STDBOOL
+#define _STDBOOL
+
+#define __bool_true_false_are_defined 1
+
+#ifndef __cplusplus
+
+#define bool  _Bool
+#define false 0
+#define true  1
+
+#endif /* __cplusplus */
+
+#endif /* _STDBOOL */
+#endif
+
+
+
+
 
 /////////////////////////////////////////////////////////////////////////////
 //===========================================================================
